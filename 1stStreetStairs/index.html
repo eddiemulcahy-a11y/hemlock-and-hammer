@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1st Street — Stairs to Water · Hemlock & Hammer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --black-deep: #000000;
+  --charcoal: #1c1c1c;
+  --gold: #c89a3d;
+  --gold-bright: #d9b658;
+  --gold-deep: #a8862a;
+  --cream: #f5f3ee;
+  --cream-deep: #e8e4dc;
+  --paper: #faf8f3;
+  --stone: #5a5a5a;
+  --stone-light: #8a8a8a;
+  --warn: #b87333;
+  --critical: #8b2e1f;
+  --active: #4a6741;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--black);
+  background: var(--paper);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* MASTHEAD */
+.masthead {
+  background:
+    radial-gradient(ellipse at top right, rgba(200, 154, 61, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(168, 116, 28, 0.10) 0%, transparent 50%),
+    linear-gradient(180deg, #000000 0%, #0a0a0a 60%, #141414 100%);
+  color: var(--cream);
+  padding: 3rem 2rem 2.5rem;
+  border-bottom: 3px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.masthead::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0px, transparent 24px,
+      rgba(200, 154, 61, 0.025) 24px, rgba(200, 154, 61, 0.025) 25px
+    );
+  pointer-events: none;
+}
+
+.masthead::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent 0%, var(--gold) 30%, var(--gold-bright) 50%, var(--gold) 70%, transparent 100%);
+  pointer-events: none;
+}
+
+.masthead-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.breadcrumb {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+}
+
+.breadcrumb a {
+  color: var(--gold-bright);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+
+.breadcrumb a:hover { border-bottom-color: var(--gold-bright); }
+
+.brand-line {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.brand-line::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold) 0%, transparent 100%);
+}
+
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.05;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 1.7vw, 1.25rem);
+  font-style: italic;
+  color: var(--cream-deep);
+}
+
+/* MAIN */
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  flex: 1;
+  width: 100%;
+}
+
+/* STATUS BAR */
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: white;
+  border: 1px solid var(--cream-deep);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.status-pill {
+  background: var(--charcoal);
+  color: var(--gold-bright);
+  padding: 0.25rem 0.7rem;
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+.status-meta { color: var(--stone); }
+.status-meta strong { color: var(--black); }
+
+/* PANELS */
+.panel {
+  background: white;
+  border: 1px solid var(--cream-deep);
+  padding: 1.75rem 2rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(10, 10, 10, 0.04);
+  margin-bottom: 1.5rem;
+}
+
+.panel-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 0.4rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--gold);
+  display: inline-block;
+  padding-right: 1.5rem;
+}
+
+.panel-subtitle {
+  color: var(--stone);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+  font-style: italic;
+}
+
+.panel p { margin-bottom: 0.9rem; color: var(--charcoal); }
+.panel p:last-child { margin-bottom: 0; }
+.panel p strong { color: var(--black); }
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.section-title .marker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--gold-deep);
+  letter-spacing: 0.12em;
+  margin-right: 0.6rem;
+  font-weight: 700;
+}
+
+/* OVERVIEW LIST */
+.overview-list {
+  list-style: none;
+  padding: 0;
+}
+
+.overview-list li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--cream-deep);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1rem;
+  align-items: start;
+  color: var(--charcoal);
+}
+
+.overview-list li:last-child { border-bottom: none; }
+
+.overview-list .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--stone);
+  font-weight: 600;
+  padding-top: 2px;
+}
+
+@media (max-width: 600px) {
+  .overview-list li { grid-template-columns: 1fr; gap: 0.2rem; }
+}
+
+/* QUESTIONS LIST */
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+}
+
+.checklist li {
+  padding: 0.6rem 0 0.6rem 1.6rem;
+  position: relative;
+  color: var(--charcoal);
+  border-bottom: 1px dashed var(--cream-deep);
+}
+
+.checklist li:last-child { border-bottom: none; }
+
+.checklist li::before {
+  content: "□";
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  color: var(--gold-deep);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+}
+
+/* ACTION TRACKER */
+.action-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+}
+
+.action-item {
+  padding: 1rem 1.25rem;
+  background: var(--paper);
+  border: 1px solid var(--cream-deep);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 0.75rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: start;
+}
+
+.action-item.critical { border-left-color: var(--critical); }
+.action-item.active { border-left-color: var(--active); }
+
+.action-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 0.25rem;
+}
+
+.action-detail {
+  font-size: 0.92rem;
+  color: var(--charcoal);
+}
+
+.action-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-end;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--stone);
+  white-space: nowrap;
+}
+
+.pill {
+  padding: 0.2rem 0.65rem;
+  background: var(--charcoal);
+  color: var(--gold-bright);
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+.pill-critical { background: var(--critical); color: white; }
+.pill-active { background: var(--active); color: white; }
+.pill-pending { background: var(--stone); color: white; }
+
+.action-owner { color: var(--gold-deep); font-weight: 600; }
+
+@media (max-width: 600px) {
+  .action-item { grid-template-columns: 1fr; }
+  .action-meta { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+}
+
+/* WARNING PANEL */
+.warning-panel {
+  background: linear-gradient(180deg, #fff8ee 0%, #fdf3e0 100%);
+  border: 1px solid #e8c990;
+  border-left: 4px solid var(--warn);
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 1.5rem;
+}
+
+.warning-panel .warning-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--warn);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.warning-panel p { color: var(--charcoal); margin-bottom: 0.6rem; }
+.warning-panel p:last-child { margin-bottom: 0; }
+.warning-panel strong { color: var(--black); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--cream-deep);
+  padding: 1.5rem;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--stone);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+footer .marker { color: var(--gold); }
+
+footer a {
+  color: var(--stone);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+footer a:hover {
+  color: var(--gold-deep);
+  border-bottom-color: var(--gold-deep);
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="breadcrumb"><a href="../index.html">← All Projects</a></div>
+    <div class="brand-line"><span>Project Brief · Lead Intake</span></div>
+    <h1 class="title">1st Street — Stairs to Water</h1>
+    <p class="subtitle">Shoreline staircase project · Langley, Whidbey Island, WA</p>
+  </div>
+</header>
+
+<main>
+
+  <div class="status-bar">
+    <span class="status-pill">Lead Intake</span>
+    <span class="status-meta">Source: <strong>Tristan Network</strong></span>
+    <span class="status-meta">Logged: <strong>2026-04-26</strong></span>
+    <span class="status-meta">Lead Owner: <strong>Eddie</strong></span>
+  </div>
+
+  <!-- 01 OVERVIEW -->
+  <div class="panel">
+    <h2 class="panel-title">01 · Overview</h2>
+    <p class="panel-subtitle">What we know from Tristan's intake.</p>
+
+    <ul class="overview-list">
+      <li><span class="label">Project Type</span><span>Exterior staircase from house down to the water</span></li>
+      <li><span class="label">Property</span><span>1st Street, Langley, WA (single-family)</span></li>
+      <li><span class="label">Homeowner</span><span><em>Name TBD — Tristan has prior contact and is reconnecting</em></span></li>
+      <li><span class="label">Source</span><span>Tristan Johnson, H&amp;H GC. Tristan has worked with the homeowner before and believes they're ready to start the process.</span></li>
+      <li><span class="label">Stage</span><span>Lead Intake — homeowner contact + readiness confirmation pending</span></li>
+      <li><span class="label">H&amp;H Scope (anticipated)</span><span>Project management, permit shepherding, structural staircase build, coordination with geo tech and structural engineer subs</span></li>
+    </ul>
+  </div>
+
+  <!-- 02 KNOWN GATING ITEMS -->
+  <div class="panel">
+    <h2 class="panel-title">02 · Known Gating Items</h2>
+    <p class="panel-subtitle">From Tristan's initial read. These shape the timeline conversation with the homeowner.</p>
+
+    <div class="warning-panel">
+      <div class="warning-label">⚠ Long-Cycle Permit Project</div>
+      <p>Tristan estimates <strong>6–8 months</strong> for permits. Langley sits on Saratoga Passage — a stairway from a residence "down to the water" almost certainly triggers shoreline jurisdiction (Shoreline Management Act, WAC 173-26) and likely critical-areas review (geologically hazardous areas, marine bluff buffers, possibly fish &amp; wildlife habitat). Set timeline expectations with the homeowner upfront. Homeowners who haven't been through shoreline permitting before consistently underestimate the cycle.</p>
+    </div>
+
+    <h3 class="section-title"><span class="marker">02.1</span> Pre-Bid Costs the Homeowner Should Expect</h3>
+    <ul class="checklist">
+      <li><strong>Permit fees</strong> — City of Langley + likely Island County critical areas, possibly WA DOE (Department of Ecology) JARPA if shoreline armoring is in scope</li>
+      <li><strong>Geotechnical report</strong> — Required for any structure on a marine bluff. Typical fee range is meaningful (4–5 figures depending on slope stability questions). Homeowner pays direct.</li>
+      <li><strong>Structural engineering</strong> — Stamped drawings for foundation/anchor design and stair structure. Sub fee, can be H&amp;H pass-through or homeowner-direct.</li>
+      <li><strong>Survey</strong> — May be required if property pins or shoreline OHWM (ordinary high water mark) aren't established.</li>
+    </ul>
+
+    <h3 class="section-title"><span class="marker">02.2</span> Likely Permit Stack</h3>
+    <ul class="checklist">
+      <li>Shoreline Substantial Development Permit OR Shoreline Exemption (depends on cost threshold and scope)</li>
+      <li>Critical Areas review — geo hazard, marine bluff buffer</li>
+      <li>City of Langley building permit</li>
+      <li>Possible JARPA if any in-water work or armoring is proposed</li>
+    </ul>
+  </div>
+
+  <!-- 03 OPEN QUESTIONS FOR HOMEOWNER -->
+  <div class="panel">
+    <h2 class="panel-title">03 · Open Questions for the Homeowner</h2>
+    <p class="panel-subtitle">Capture before site walk. Most of these unblock the bid.</p>
+
+    <h3 class="section-title"><span class="marker">03.1</span> Project Scope</h3>
+    <ul class="checklist">
+      <li>What's currently there? (Existing trail, old stairs to demo, fully greenfield?)</li>
+      <li>How far down is the water? Approximate vertical drop and run.</li>
+      <li>Is the destination a beach, dock, or in-water structure?</li>
+      <li>Materials preference? (Pressure-treated, ipe, steel, helical pier foundation, etc.)</li>
+      <li>Lighting? Handrails? Landings? Any covered or partial-cover sections?</li>
+    </ul>
+
+    <h3 class="section-title"><span class="marker">03.2</span> Property &amp; Permits</h3>
+    <ul class="checklist">
+      <li>Property address (full) — confirms parcel for permit research</li>
+      <li>Has any prior permitting work been done on the property in the last 5 years?</li>
+      <li>Is there a recent geotechnical or shoreline study on file?</li>
+      <li>Are there existing restrictions (easements, HOA, conservation)?</li>
+      <li>Any prior contractor estimates we should know about?</li>
+    </ul>
+
+    <h3 class="section-title"><span class="marker">03.3</span> Timeline &amp; Decision</h3>
+    <ul class="checklist">
+      <li>What's driving the timeline? (Sale prep, accessibility, recreation, insurance?)</li>
+      <li>Is this homeowner aware of the 6–8 month permit reality?</li>
+      <li>Decision-maker — single owner or co-owners both signing?</li>
+      <li>Budget signal — has the homeowner thought about a number, or are they looking to H&amp;H to scope the cost?</li>
+    </ul>
+  </div>
+
+  <!-- 04 ACTION TRACKER -->
+  <div class="panel">
+    <h2 class="panel-title">04 · Action Tracker</h2>
+    <p class="panel-subtitle">Live state. Single source of truth: H&amp;H Leads board (item 11852937666). Update there, then update here.</p>
+
+    <h3 class="section-title"><span class="marker">04.1</span> Open — Lead Intake</h3>
+    <ul class="action-list">
+      <li class="action-item critical">
+        <div>
+          <div class="action-title">Confirm homeowner name + contact info</div>
+          <div class="action-detail">Tristan to share name, email, and phone for the homeowner. Without this, lead can't move out of intake.</div>
+        </div>
+        <div class="action-meta">
+          <span class="pill pill-critical">Blocking</span>
+          <span class="action-owner">Tristan</span>
+          <span>This week</span>
+        </div>
+      </li>
+      <li class="action-item active">
+        <div>
+          <div class="action-title">Capture lead in CRM</div>
+          <div class="action-detail">Logged on H&amp;H Leads board (item 11852937666) at Lead Intake stage on 2026-04-26.</div>
+        </div>
+        <div class="action-meta">
+          <span class="pill pill-active">Done</span>
+          <span class="action-owner">Eddie</span>
+          <span>2026-04-26</span>
+        </div>
+      </li>
+      <li class="action-item">
+        <div>
+          <div class="action-title">Initial homeowner outreach — Tristan</div>
+          <div class="action-detail">Tristan to make first contact. Confirm readiness, set timeline expectations (6–8 month permit cycle), and propose a site walk. Move lead to "Qualifying" once contact is made.</div>
+        </div>
+        <div class="action-meta">
+          <span class="pill pill-pending">Sequenced</span>
+          <span class="action-owner">Tristan</span>
+          <span>Post contact info</span>
+        </div>
+      </li>
+      <li class="action-item">
+        <div>
+          <div class="action-title">Site walk — H&amp;H + homeowner</div>
+          <div class="action-detail">Capture site context: vertical drop, soil/bluff conditions, existing access, OHWM proximity, photos. Bring the §03 question list. Identify whether geo tech can begin in parallel.</div>
+        </div>
+        <div class="action-meta">
+          <span class="pill pill-pending">Sequenced</span>
+          <span class="action-owner">Tristan + Eddie</span>
+          <span>Post outreach</span>
+        </div>
+      </li>
+      <li class="action-item">
+        <div>
+          <div class="action-title">Permit research — Langley + Island County</div>
+          <div class="action-detail">Once address is confirmed, pull parcel record. Check existing permits, shoreline designation, critical areas mapping. Determine likely permit path before quoting timeline to homeowner.</div>
+        </div>
+        <div class="action-meta">
+          <span class="pill pill-pending">Sequenced</span>
+          <span class="action-owner">Eddie</span>
+          <span>Post site walk</span>
+        </div>
+      </li>
+      <li class="action-item">
+        <div>
+          <div class="action-title">Geotechnical engineer referral</div>
+          <div class="action-detail">Identify and engage a Whidbey-experienced geo tech firm. Marine bluff stability work requires local soils knowledge. Get a fee proposal for the homeowner.</div>
+        </div>
+        <div class="action-meta">
+          <span class="pill pill-pending">Sequenced</span>
+          <span class="action-owner">Tristan</span>
+          <span>Post site walk</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>
+  <span class="marker">◆</span> &nbsp; Hemlock &amp; Hammer &nbsp;·&nbsp; Whidbey Island, Washington &nbsp;·&nbsp; <a href="../index.html">All Projects</a> &nbsp; <span class="marker">◆</span>
+</footer>
+
+</body>
+</html>

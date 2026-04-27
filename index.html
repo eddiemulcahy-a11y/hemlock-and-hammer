@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hemlock & Hammer · Project Briefs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --black-deep: #000000;
+  --charcoal: #1c1c1c;
+  --gold: #c89a3d;
+  --gold-bright: #d9b658;
+  --gold-deep: #a8862a;
+  --cream: #f5f3ee;
+  --cream-deep: #e8e4dc;
+  --paper: #faf8f3;
+  --stone: #5a5a5a;
+  --stone-light: #8a8a8a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--black);
+  background: var(--paper);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* MASTHEAD */
+.masthead {
+  background:
+    radial-gradient(ellipse at top right, rgba(200, 154, 61, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(168, 116, 28, 0.10) 0%, transparent 50%),
+    linear-gradient(180deg, #000000 0%, #0a0a0a 60%, #141414 100%);
+  color: var(--cream);
+  padding: 4rem 2rem 3.5rem;
+  border-bottom: 3px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.masthead::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0px, transparent 24px,
+      rgba(200, 154, 61, 0.025) 24px, rgba(200, 154, 61, 0.025) 25px
+    );
+  pointer-events: none;
+}
+
+.masthead::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent 0%, var(--gold) 30%, var(--gold-bright) 50%, var(--gold) 70%, transparent 100%);
+  pointer-events: none;
+}
+
+.masthead-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .masthead { padding: 2.5rem 1.25rem 2rem; }
+  .masthead-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+.masthead-logo {
+  width: 180px;
+  height: 180px;
+  flex-shrink: 0;
+}
+
+.masthead-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 16px rgba(200, 154, 61, 0.3));
+}
+
+@media (max-width: 720px) {
+  .masthead-logo { width: 120px; height: 120px; }
+}
+
+.brand-line {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.brand-line::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold) 0%, transparent 100%);
+}
+
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1.05;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-style: italic;
+  color: var(--cream-deep);
+  margin-bottom: 0;
+}
+
+/* MAIN */
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+  flex: 1;
+  width: 100%;
+}
+
+.intro {
+  font-size: 1.05rem;
+  color: var(--charcoal);
+  margin-bottom: 2.5rem;
+  max-width: 760px;
+}
+
+.intro strong { color: var(--black); }
+
+h2.section-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--gold);
+  position: relative;
+  display: inline-block;
+  padding-right: 2rem;
+}
+
+.section-heading::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 50px;
+  height: 5px;
+  background: var(--charcoal);
+  border-radius: 0 0 3px 0;
+}
+
+/* PROJECT CARDS */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.project-card {
+  background: white;
+  border: 1px solid var(--cream-deep);
+  border-left: 4px solid var(--gold);
+  padding: 1.5rem 1.75rem;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 10px rgba(10, 10, 10, 0.06);
+  transition: transform 0.18s, box-shadow 0.18s, border-left-color 0.18s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(10, 10, 10, 0.12);
+  border-left-color: var(--gold-deep);
+}
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.project-stage {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  background: var(--charcoal);
+  color: var(--gold-bright);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  border-radius: 2px;
+}
+
+.project-location {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--stone);
+}
+
+.project-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+}
+
+.project-desc {
+  color: var(--charcoal);
+  font-size: 0.95rem;
+  margin-bottom: 0.7rem;
+}
+
+.project-cta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold-deep);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.project-cta::after {
+  content: "→";
+  transition: transform 0.18s;
+}
+
+.project-card:hover .project-cta::after {
+  transform: translateX(3px);
+}
+
+/* About panel */
+.about-panel {
+  background: var(--cream);
+  border-left: 4px solid var(--charcoal);
+  padding: 1.5rem 1.75rem;
+  margin-top: 2.5rem;
+  border-radius: 0 4px 4px 0;
+}
+
+.about-panel p {
+  font-size: 0.95rem;
+  color: var(--charcoal);
+  margin-bottom: 0.6rem;
+}
+
+.about-panel p:last-child { margin-bottom: 0; }
+
+.about-panel strong { color: var(--black); }
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--cream-deep);
+  padding: 1.5rem;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--stone);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+footer .marker { color: var(--gold); }
+
+footer a {
+  color: var(--stone);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+footer a:hover {
+  color: var(--gold-deep);
+  border-bottom-color: var(--gold-deep);
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-logo">
+      <img src="./hh-logo.jpeg" alt="Hemlock & Hammer logo">
+    </div>
+    <div>
+      <div class="brand-line"><span>Project Briefs · Whidbey Island</span></div>
+      <h1 class="title">Hemlock &amp; Hammer</h1>
+      <p class="tagline">Sympathetic construction in pocket neighborhoods, accessibility installs, and architectural alteration work across the Pacific Northwest.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <p class="intro">This site publishes working <strong>project briefs</strong> for active Hemlock &amp; Hammer construction projects. Each brief is a self-contained reference document — specs, scope, risks, contacts, and outreach drafts — used by the H&amp;H team and shared with homeowners, subcontractors, dealers, and inspection authorities involved in the project.</p>
+
+  <h2 class="section-heading">Current Projects</h2>
+
+  <div class="project-grid">
+    <a class="project-card" href="./1080-village-loop/">
+      <div class="project-meta">
+        <span class="project-stage">Qualifying</span>
+        <span class="project-location">Snowberry Close · Langley, WA</span>
+      </div>
+      <div class="project-name">1080 Village Loop</div>
+      <div class="project-desc">Stiltz Duo Alta home lift installation in a 2008 Ross Chapin–designed two-story Craftsman cottage. Aging-in-place project for original homeowners. H&amp;H scope: structural prep, electrical, finish carpentry, project management.</div>
+      <div class="project-cta">View Project Brief</div>
+    </a>
+
+    <a class="project-card" href="./1st-street-stairs/">
+      <div class="project-meta">
+        <span class="project-stage">Lead Intake</span>
+        <span class="project-location">1st Street · Langley, WA</span>
+      </div>
+      <div class="project-name">1st Street — Stairs to Water</div>
+      <div class="project-desc">Exterior staircase from house down to the water. Long-cycle shoreline permit project (6–8 months). Lead from Tristan's network. H&amp;H scope: project management, permit shepherding, structural build, geo tech and structural engineering coordination.</div>
+      <div class="project-cta">View Project Brief</div>
+    </a>
+  </div>
+
+  <div class="about-panel">
+    <p><strong>About Hemlock &amp; Hammer.</strong> H&amp;H is a Whidbey Island construction firm specializing in sympathetic alterations to architecturally significant homes, accessibility installations, and pocket-neighborhood renovation work. We approach every project with the discipline of a pre-construction scoping document — surfacing risks, clarifying scope, and respecting the design integrity of the homes we work in.</p>
+    <p>Eddie Mulcahy, sole managing member. Tristan Johnson, General Contractor.</p>
+  </div>
+</main>
+
+<footer>
+  <span class="marker">◆</span> &nbsp; Hemlock &amp; Hammer &nbsp;·&nbsp; Whidbey Island, Washington &nbsp;·&nbsp; <a href="https://github.com/eddiemulcahy-a11y/hemlock-and-hammer-projects" target="_blank">View source on GitHub</a> &nbsp; <span class="marker">◆</span>
+</footer>
+
+</body>
+</html>
